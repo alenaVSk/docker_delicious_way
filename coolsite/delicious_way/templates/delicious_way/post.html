@@ -1,0 +1,21 @@
+{% extends 'delicious_way/base.html' %}
+
+{% block content %}
+
+<h1>{{post.title}}</h1>
+
+{% if post.photo %}
+<p><img class="img-article-left" src="{{post.photo.url}}"></p>
+{% endif %}
+
+{{post.content|linebreaks}}
+
+<p>{{ '👍' }} {{ post.likes }}</p>
+
+{% if user.is_authenticated %}
+<form method="post" action="{% url 'post' post.slug %}">
+  {% csrf_token %}
+  <button type="submit">Лайк</button>
+</form>
+{% endif %}
+{% endblock %}
