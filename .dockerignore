@@ -1,0 +1,35 @@
+# Git
+.git
+.gitignore
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+*.so
+
+# Виртуальное окружение
+venv/
+*.venv
+env/
+*.env
+
+# Базы данных
+*.sqlite3
+
+# Логи
+*.log
+
+# Временные файлы
+*.swp
+*.swo
+*~
+
+# Файлы IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+.idea_modules/
+

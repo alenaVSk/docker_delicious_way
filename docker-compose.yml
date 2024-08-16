@@ -1,0 +1,27 @@
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+      - ./coolsite/dump_dw:/app/coolsite/dump_dw
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+    working_dir: /app/coolsite
+
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./coolsite:/dumps
+    environment:
+      - POSTGRES_DB=delisious_way
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=elena
+
+volumes:
+  postgres_data:
