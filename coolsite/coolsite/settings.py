@@ -24,9 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-wprn9i$glix7vhuj2t8z3!wq#33noa(i@xeuz^+vucyy4hel+('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+#DEBUG = True  # для отладки
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
+#ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '.herokuapp.com', 'coolsite-7005f32e8556.herokuapp.com']
 
 
 # Application definition
@@ -77,8 +79,20 @@ WSGI_APPLICATION = 'coolsite.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+'''
+# Основные настройки базы данных для Heroku
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('POSTGRES_DB', 'd6cmipmmoa6n07'),
+        'USER': os.environ.get('POSTGRES_USER', 'u24g3klr81bnrm'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'p1c4d5d25b3d80d27566e7fee9068f9d1eb268f839c6bef03a6103eb3bc1be2e8'),
+        'HOST': os.environ.get('POSTGRES_HOST', 'c3gtj1dt5vh48j.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com'),
+        'PORT': os.environ.get('POSTGRES_PORT', '5432'),
+    }
+}
 
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -122,24 +136,28 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_URL = 'static/'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.2/howto/static-files/
+'''
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [
+    BASE_DIR / 'coolsite' / 'static',
+    BASE_DIR / 'delicious_way' / 'static',
+]
+'''
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = []
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 #LOGIN_REDIRECT_URL = '/'
