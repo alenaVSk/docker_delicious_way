@@ -29,7 +29,11 @@ docker-compose exec web python manage.py migrate
 ```
 docker-compose exec db psql -U <имя пользователя PostgreSQL> -d delisious_way -f /dumps/dump_dw
 ```
-### 6. Открыть в браузере:
+### 6. Сбор статических файлов в директорию staticfiles:
+```python
+python manage.py collectstatic
+```
+### 7. Открыть в браузере:
 0.0.0.0:8000
 
 
